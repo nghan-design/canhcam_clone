@@ -16,7 +16,6 @@ canhcam-clone/
 ├── package.json                 # Quản lý dependencies (React, Vite, Tailwind)
 ├── tailwind.config.js           # Cấu hình màu sắc, breakpoints và theme Tailwind
 ├── vite.config.js               # Cấu hình Vite build & dev server
-├── CAU_TRUC_VA_LUU_Y_DU_AN.doc  # File Word xuất bản đầy đủ bảng biểu, định dạng in ấn
 ├── CAU_TRUC_VA_LUU_Y_DU_AN.md   # File Markdown hướng dẫn kỹ thuật dự án
 ├── src/
 │   ├── main.jsx                 # Điểm khởi tạo React DOM (root entry)
@@ -72,23 +71,8 @@ canhcam-clone/
 - **Không sử dụng Reload trang:** Hệ thống sử dụng State `currentPage` tại `src/App.jsx`. Khi chuyển trang, hàm `handleNavigate(pageKey)` sẽ cập nhật state và kích hoạt `window.scrollTo({ top: 0, behavior: 'smooth' })` giúp trải nghiệm chuyển trang diễn ra tức thì, không giật lag.
 - **Các Key định danh trang:** `'home'`, `'about'`, `'thiet-ke-website'`, `'da-thiet-ke'`, `'dich-vu'`, `'quy-trinh'`, `'blog'`. Bất kỳ component nào nhận prop `onNavigate` đều có thể gọi hàm chuyển trang.
 
-### 2. Xử lý Video nền & Thuộc tính Tắt tiếng (Muted Autoplay)
-> [!IMPORTANT]
-> Các trình duyệt hiện đại (Chrome, Safari, Edge) sẽ chặn tự động phát (Autoplay) nếu video có âm thanh. Do đó, thẻ `<video>` tại trang chủ luôn phải đảm bảo các thuộc tính:
-> ```html
-> <video autoPlay muted defaultMuted loop playsInline ... />
-> ```
-> Đồng thời trong code đã bổ sung cơ chế gán trực tiếp thuộc tính DOM: `el.muted = true; el.defaultMuted = true; el.volume = 0;` và lắng nghe sự kiện `onVolumeChange` để ngăn chặn hoàn toàn việc phát ra âm thanh đột ngột.
 
-### 3. Thanh cuộn ngang & Nút điều hướng Carousel
-- **Loại bỏ thanh cuộn trình duyệt:** Không để thanh cuộn xám mặc định xuất hiện gây mất thẩm mỹ. Luôn gán class `no-scrollbar` và bổ sung style inline: `style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}`.
-- **Điều khiển trượt bằng nút:** Sử dụng `useRef` trỏ đến container cuộn và gọi phương thức `trackRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' })` để tạo trải nghiệm bấm mượt mà trên cả desktop lẫn thiết bị di động.
-
-### 4. Căn chỉnh Bố cục Khung Chạy Hình (Marquee Showcase)
-- Khi kết hợp giữa cột văn bản và cột chạy hình chuyển động, luôn dùng `items-center` thay vì `items-start` trên màn hình lớn để hai khối luôn cân xứng ở chính giữa trục dọc.
-- Các cột chạy dọc đối xứng nên có số lượng phần tử hình ảnh bằng nhau và sử dụng biên độ dịch chuyển nhẹ nhàng (từ `-8%` đến `4%`) để không bị hở đáy hoặc tạo khoảng trống đứt gãy.
-
-### 5. Hướng dẫn 4 bước thêm một Trang mới vào Website
+### 2. Hướng dẫn 4 bước thêm một Trang mới vào Website
 1. **Bước 1:** Tạo file component mới trong thư mục `src/pages/` (ví dụ: `ContactPage.jsx`).
 2. **Bước 2:** Khai báo thêm mục tương ứng trong file `src/data/navigation.js` (ví dụ: `{ label: 'Liên Hệ' }`).
 3. **Bước 3:** Trong `src/App.jsx`, import component mới và thêm điều kiện render:
