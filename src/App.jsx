@@ -14,7 +14,7 @@ import WorkflowPage from './pages/WorkflowPage';
 import BlogPage from './pages/BlogPage';
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('thiet-ke-website');
+  const [currentPage, setCurrentPage] = useState('home');
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
